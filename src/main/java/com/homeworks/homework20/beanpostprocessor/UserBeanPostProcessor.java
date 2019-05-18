@@ -7,12 +7,12 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
 public class UserBeanPostProcessor implements BeanPostProcessor {
-    private static final Logger logger = LoggerFactory.getLogger(UserBeanPostProcessor.class);
+    private static final Logger LOGGER  = LoggerFactory.getLogger(UserBeanPostProcessor.class);
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         if (bean instanceof User) {
-            logger.info("In postProcessBeforeInitialization " + bean);
+            LOGGER .info("In postProcessBeforeInitialization " + bean);
         }
         return bean;
     }
@@ -20,7 +20,7 @@ public class UserBeanPostProcessor implements BeanPostProcessor {
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         if (bean instanceof User) {
-            logger.info("In postProcessAfterInitialization " + bean);
+            LOGGER .info("In postProcessAfterInitialization " + bean);
         }
         return bean;
     }

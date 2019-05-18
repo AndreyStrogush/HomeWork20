@@ -14,12 +14,10 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class SchedulerService {
-    private static final String CRON = "*/10 * * * * *";
-
     private final UserService userService;
     private final EmailService emailService;
 
-    @Scheduled(cron = CRON)
+    @Scheduled(cron = "${cron}")
     public void sendMailtoUsers() {
         LocalDate date = LocalDate.now();
         int month = date.getMonthValue();

@@ -1,7 +1,10 @@
 package com.homeworks.homework20.controller;
 
+import com.homeworks.homework20.interceptor.UserInterceptor;
 import com.homeworks.homework20.model.User;
 import com.homeworks.homework20.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
@@ -17,10 +20,15 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@ComponentScan(basePackages = "com.homeworks")
+@ComponentScan(basePackages = "com.homeworks.homework20.model")
 public class AppController {
-    @Autowired
+    private static final Logger LOGGER  = LoggerFactory.getLogger(UserInterceptor.class);
     private UserService userService;
+
+    @Autowired
+    public void UserService (UserService userService) {
+        this.userService = userService;
+    }
 
     @RequestMapping("/")
     public String home(Model model) {
@@ -51,8 +59,13 @@ public class AppController {
 
     @RequestMapping("/delete/{id}")
     public String deleteStudent(@PathVariable(name = "id") Long id) {
+        User user = userService.findUserById(id);
+        boolean wasOK = userService.deleteUser(user);
+        if (!wasOK){
+            LOGGER .info("Error, user can not be deleted");
+            return "redirect:/";
+        }
         userService.deleteUser(id);
         return "redirect:/";
     }
-
 }

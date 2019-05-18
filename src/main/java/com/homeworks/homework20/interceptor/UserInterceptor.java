@@ -11,12 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 @Component
 public class UserInterceptor extends HandlerInterceptorAdapter {
-    private static final Logger logger = LoggerFactory.getLogger(UserInterceptor.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserInterceptor.class);
 
     @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception{
-        logger.info("Client User-Agent: " + request.getHeader("User-Agent"));
+        LOGGER .info("Client User-Agent: " + request.getHeader("User-Agent"));
         return super.preHandle(request, response, handler);
     }
 
