@@ -13,7 +13,6 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UserServiceImpl implements UserService {
-
     private UserRepository userRepository;
 
     @Override

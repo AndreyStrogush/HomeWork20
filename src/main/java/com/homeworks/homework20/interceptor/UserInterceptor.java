@@ -16,20 +16,20 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception{
-        LOGGER .info("Client User-Agent: " + request.getHeader("User-Agent"));
-        return super.preHandle(request, response, handler);
+        LOGGER .info("PreHandle intercepted");
+        return true;
     }
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response,
                            Object handler, ModelAndView modelAndView) throws Exception {
-        super.postHandle(request, response, handler, modelAndView);
+        LOGGER .info("PostHandle intercepted");
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response,
                                 Object handler, Exception ex) throws Exception {
-        super.afterCompletion(request, response, handler, ex);
+        LOGGER .info("afterCompletion message");
     }
 
 }

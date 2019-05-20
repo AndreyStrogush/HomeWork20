@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class SchedulerService {
+public class SchedulerService { 
     private final UserService userService;
     private final EmailService emailService;
 
